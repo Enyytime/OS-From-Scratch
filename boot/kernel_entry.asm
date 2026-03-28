@@ -1,8 +1,8 @@
 [bits 32]
-[extern main] ; Define calling point. Must have same name as kernel.c 'main' function
+[extern main]
 
+[global _start]   ; ← ADD THIS LINE
 _start:
-    mov esp, 0x9000    ; <--- ADD THIS LINE! Set the stack safely away from your code
+    mov esp, 0x9000
     call main
     jmp $
-
