@@ -1,5 +1,6 @@
 #include "../cpu/idt.h"
 #include "../cpu/isr.h"
+#include "../drivers/screen.h"
 #include "../drivers/keyboard.h"
 
 void main() {
@@ -13,7 +14,7 @@ void main() {
     init_keyboard();
 
     // 4. Enable interrupts
-    // asm volatile("sti");
+    asm volatile("sti");
 
     kprint("Kenny's OS is active, bruh.\n");
 }
