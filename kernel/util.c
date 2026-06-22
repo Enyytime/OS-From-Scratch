@@ -103,3 +103,33 @@ void itoa(int n, char str[]) {
     // Flip the string so it reads correctly (e.g., "-31" becomes "-13")
     reverse(str);
 }
+
+/**
+ * @brief Compares two null-terminated strings lexicographically.
+ *
+ * @param s1 Pointer to the first string.
+ * @param s2 Pointer to the second string.
+ * @return 0 if equal, negative if s1 < s2, positive if s1 > s2.
+ */
+int strcmp(const char* s1, const char* s2){
+    while(*s1 && *s1 == *s2) {
+        s1++;
+        s2++;
+    }
+    return *s1 - *s2;
+}
+
+/**
+ * @brief Returns the length of a null-terminated string.
+ *
+ * @param s Pointer to the string.
+ * @return The number of characters before the null terminator.
+ */
+int strlen(const char* s) {
+    int n = 0;
+    while(*s++) {
+        n++;
+    }
+
+    return n;
+}

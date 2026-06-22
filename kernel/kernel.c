@@ -2,6 +2,7 @@
 #include "../cpu/isr.h"
 #include "../drivers/screen.h"
 #include "../drivers/keyboard.h"
+#include "shell.h"
 
 void main() {
     // 1. Install the ISRs (fills the 'idt' array with handler addresses)
@@ -16,5 +17,5 @@ void main() {
     // 4. Enable interrupts
     asm volatile("sti");
 
-    kprint("Kenny's OS is active, bruh.\n");
+    shell_prompt();
 }
