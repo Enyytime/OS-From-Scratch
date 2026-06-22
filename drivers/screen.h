@@ -19,7 +19,7 @@
 /* Public Kernel API */
 void clear_screen();
 void kprint(char* message);
-void kprint_backspace();  
+void kprint_backspace();
 void scroll_up();         
 void scroll_down();       
 #endif

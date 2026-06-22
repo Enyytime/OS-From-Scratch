@@ -61,8 +61,8 @@ static void keyboard_callback(registers_t regs) {
     if (scancode == 0x0E) {
         if (buffer_index > 0) {
             buffer_index--;
+            kprint_backspace();
         }
-        kprint_backspace(); 
         return;
     }
 

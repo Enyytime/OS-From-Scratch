@@ -230,7 +230,8 @@ static int get_offset(int col, int row) {
  * * @param offset The byte offset.
  * @return int The row index (offset / 160).
  */
-static int get_offset_row(int offset) { 
-    return offset / (2 * MAX_COLS); 
+static int get_offset_row(int offset) {
+    return offset / (2 * MAX_COLS);
 }
+
 
