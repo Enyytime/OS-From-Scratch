@@ -120,6 +120,11 @@ char *exception_messages[] = {
  * @param r The register state pushed onto the stack by the assembly stub.
  */
 void isr_handler(registers_t r) {
+    if (interrupt_handlers[r.int_no] != 0) {
+        isr_t handler = interrupt_handlers[r.int_no];
+        handler(r);
+        return;
+    }
     kprint("received interrupt: ");
     char s[3];
     itoa(r.int_no, s);
