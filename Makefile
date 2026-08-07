@@ -3,19 +3,19 @@ HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h memory/*.h)
 
 OBJ = ${C_SOURCES:.c=.o} cpu/interrupt.o
 
-CC = /usr/local/i386elfgcc/bin/i386-elf-gcc
-GDB = /usr/local/i386elfgcc/bin/i386-elf-gdb
-CFLAGS = -g
+CC = i686-elf-gcc
+GDB = gdb
+CFLAGS = -g -I.
 
 # Changed: boot/bootsect.bin → boot/boot.bin
 os-image.bin: boot/boot.bin kernel.bin
 	cat $^ > os-image.bin
 
 kernel.bin: boot/kernel_entry.o ${OBJ}
-	i386-elf-ld -o $@ -T linker.ld $^ --oformat binary
+	i686-elf-ld -o $@ -T linker.ld $^ --oformat binary
 
 kernel.elf: boot/kernel_entry.o ${OBJ}
-	i386-elf-ld -o $@ -T linker.ld $^
+	i686-elf-ld -o $@ -T linker.ld $^
 
 run: os-image.bin
 	qemu-system-i386 -fda os-image.bin
