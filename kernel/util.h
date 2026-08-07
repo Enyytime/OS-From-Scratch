@@ -9,4 +9,7 @@ void itoa(int n, char str[]);
 int strcmp(const char *s1, const char *s2);
 int strlen(const char *s);
 
+void  sstrncpy(char *dest, const char *src, int dest_size);
+char *strchr(const char *s, char c);
+
 #endif

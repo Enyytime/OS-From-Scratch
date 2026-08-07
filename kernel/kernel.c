@@ -2,6 +2,7 @@
 #include "../cpu/isr.h"
 #include "../drivers/screen.h"
 #include "../drivers/keyboard.h"
+#include "../memory/pmm.h"
 #include "shell.h"
 
 void main() {
@@ -17,5 +18,7 @@ void main() {
     // 4. Enable interrupts
     asm volatile("sti");
 
+    init_pmm();
+    
     shell_prompt();
 }

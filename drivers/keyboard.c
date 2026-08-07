@@ -5,6 +5,8 @@
 #include "../kernel/util.h"
 #include "../kernel/shell.h"
 
+#define KB_BUFFER_SIZE 256
+
 static char buffer[256];
 static int buffer_index = 0;
 static int shift_pressed = 0;
@@ -77,10 +79,15 @@ static void keyboard_callback(registers_t regs) {
 
     /* Map alphabetic/numeric keys */
     if (scancode <= 0x39) {
-        char letter = shift_pressed ? sc_ascii_shift[(int)scancode] : sc_ascii[(int)scancode];
+        char letter = shift_pressed ? sc_ascii_shift[(int)scancode]
+                                    : sc_ascii[(int)scancode];
+
+        /* Leave room for the null terminator — drop the key if full */
+        if (buffer_index >= KB_BUFFER_SIZE - 1) return;
+
         buffer[buffer_index++] = letter;
 
-        char str[2] = {letter, '\0'}; // kprint expects a string
+        char str[2] = {letter, '\0'};
         kprint(str);
     }
 }

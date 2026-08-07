@@ -133,3 +133,26 @@ int strlen(const char* s) {
 
     return n;
 }
+
+/**
+ * @brief Copies src into dest, always null-terminating, never overflowing.
+ * @param dest_size Total size of the dest buffer, including the null byte.
+ */
+void sstrncpy(char *dest, const char *src, int dest_size) {
+    if (dest_size <= 0) return;
+
+    int i = 0;
+    while (i < dest_size - 1 && src[i] != '\0') {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+}
+
+char *strchr(const char *s, char c) {
+    while (*s) {
+        if (*s == c) return (char *)s;
+        s++;
+    }
+    return 0;
+}
